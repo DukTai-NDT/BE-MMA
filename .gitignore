@@ -4,3 +4,5 @@ dist/
 coverage/
 logs/
 *.log
+seed/
+hash_generator.js
