@@ -113,6 +113,18 @@ const confirmBooking = async (req, res) => {
     const hold = await SlotReservation.findById(holdId);
     if (!hold) return res.status(404).json({ message: "Không tìm thấy SlotReservation" });
 
+    // Nếu slot đã booked (VNPay return handler đã xử lý) → trả về success thay vì lỗi
+    if (hold.status === "booked") {
+      const existingBooking = hold.bookingId
+        ? await Booking.findById(hold.bookingId)
+        : null;
+      return res.status(200).json({
+        message: "✅ Thanh toán đã được xử lý trước đó",
+        booking: existingBooking,
+        alreadyProcessed: true,
+      });
+    }
+
     if (hold.status !== "hold") {
       return res.status(400).json({ message: "Slot đã hết hạn hoặc đã xử lý" });
     }

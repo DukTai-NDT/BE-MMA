@@ -25,6 +25,8 @@ const SlotReservationSchema = new mongoose.Schema(
     end: { type: String, match: /^\d{2}:\d{2}$/ },
     price: { type: Number, min: 0 },
 
+    appReturnUrl: String,
+    appFailUrl: String,
     bookingId: { type: mongoose.Schema.Types.ObjectId, ref: "Booking" },
     expiresAt: { type: Date },
   },

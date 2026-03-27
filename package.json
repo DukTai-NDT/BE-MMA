@@ -1,11 +1,10 @@
 {
-<<<<<<< HEAD
   "name": "back-end",
   "version": "1.0.0",
   "description": "RESTFul API Application - Given",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "dev": "nodemon server.js"
   },
   "keywords": [
@@ -31,34 +30,11 @@
     "morgan": "^1.10.0",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
+    "ngrok": "^5.0.0-beta.2",
     "nodemailer": "^6.10.1",
     "qs": "^6.14.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-=======
-  "name": "mma_be",
-  "version": "1.0.0",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "bcrypt": "^6.0.0",
-    "bcryptjs": "^3.0.3",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "pg": "^8.16.3",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.37.7"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.11"
->>>>>>> 8549b66d3bf873b8619bffb203929360de2ee6b0
   }
 }

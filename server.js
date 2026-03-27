@@ -10,47 +10,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// CORS Setup
-
-const allowedOrigins = (
-  process.env.CORS_ORIGINS ||
-  "http://localhost:3000,http://localhost:5173,http://localhost:4200"
-)
-  .split(",")
-  .map((o) => o.trim())
-  .filter(Boolean);
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log("🌍 Request Origin:", origin);
-
-    // Cho phép request không có origin (mobile app, Postman)
-    if (!origin) return callback(null, true);
-
-    // Danh sách domain/frontend hợp lệ
-    const allowed = [
-      "http://localhost:3000",
-      "http://localhost:5173",
-      "http://localhost:8081",
-      "http://192.168.1.104:5173", // LAN web
-      "http://192.168.1.104:3000", // LAN web khác
-      "exp://192.168.1.104:19000", // Expo LAN
-      "exp://192.168.1.104:19001", // Expo dev tools
-    ];
-
-    if (allowed.includes(origin)) {
-      return callback(null, true);
-    } else {
-      console.error("❌ Blocked by CORS:", origin);
-      return callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
-};
-
-app.use(cors(corsOptions));
+// CORS Setup - Cho phép tất cả domain
+app.use(cors());
 // MongoDB Connect
 connectDB();
 app.get("/", (req, res) => {
