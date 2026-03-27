@@ -12,11 +12,14 @@ const connectDB = async () => {
       throw new Error("Missing MONGO_URI / MONGODB_URI");
     }
 
-    await mongoose.connect(uri);
+    await mongoose.connect(uri, {
+      serverSelectionTimeoutMS: 10000
+    });
+
     console.log("MongoDB connected successfully");
   } catch (error) {
     console.error("MongoDB connection failed:", error.message);
-    process.exit(1);
+    throw error;
   }
 };
 
